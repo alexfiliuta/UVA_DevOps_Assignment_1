@@ -21,8 +21,9 @@ def add_student(body=None):  # noqa: E501
         result = add(body)
         if isinstance(result, tuple):
             return result
-        return result, 200
-    return 'invalid input', 400
+        return {"student_id": result}, 200
+    
+    return {'error': 'invalid input'}, 400
 
 def delete_student(student_id):  # noqa: E501
     """gets student

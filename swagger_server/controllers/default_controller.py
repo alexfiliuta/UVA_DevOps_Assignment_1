@@ -18,7 +18,11 @@ def add_student(body=None):  # noqa: E501
     """
     if connexion.request.is_json:
         body = Student.from_dict(connexion.request.get_json())  # noqa: E501
-        return add(body)
+        result = add(body)
+        if isinstance(result, tuple):
+            return result
+        return result, 200
+    return 'invalid input', 400
 
 def delete_student(student_id):  # noqa: E501
     """gets student

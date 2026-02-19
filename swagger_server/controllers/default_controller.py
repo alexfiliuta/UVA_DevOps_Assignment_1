@@ -19,7 +19,9 @@ def add_student(body=None):  # noqa: E501
     if connexion.request.is_json:
         try:
             body = Student.from_dict(connexion.request.get_json())  # noqa: E501
+            print("Received body:", body)
             result = add(body)
+            print("Result:", result)
             if isinstance(result, tuple):
                 return result
             return {"student_id": result}, 200

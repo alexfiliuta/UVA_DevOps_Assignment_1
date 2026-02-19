@@ -17,11 +17,15 @@ def add_student(body=None):  # noqa: E501
     :rtype: str
     """
     if connexion.request.is_json:
-        body = Student.from_dict(connexion.request.get_json())  # noqa: E501
-        result = add(body)
-        if isinstance(result, tuple):
-            return result
-        return {"student_id": result}, 200
+        try:
+            body = Student.from_dict(connexion.request.get_json())  # noqa: E501
+            result = add(body)
+            if isinstance(result, tuple):
+                return result
+            return {"student_id": result}, 200
+        except Exception as e:
+            print("Error adding student: ", e)
+            return {"error": str(e)}, 400
     
     return {'error': 'invalid input'}, 400
 

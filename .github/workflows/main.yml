@@ -23,7 +23,7 @@ jobs:
       with:
         files: "postman/collection.json,postman/environment.json"
         fail: true
-  
+
     - name: Run API Tests
       id: run-newman
       uses: anthonyvscode/newman-action@master

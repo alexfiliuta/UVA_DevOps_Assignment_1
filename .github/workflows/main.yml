@@ -23,13 +23,7 @@ jobs:
       with:
         files: "postman/collection.json,postman/environment.json"
         fail: true
-
-    - name: Debug API response
-      run: |
-        curl -v -X POST http://localhost:8080/tutorial/1.0.0/student \
-          -H "Content-Type: application/json" \
-          -d '{"first_name":"test","last_name":"test","grade_records":[{"subject_name":"math","grade":6.1}]}'
-          
+  
     - name: Run API Tests
       id: run-newman
       uses: anthonyvscode/newman-action@master
